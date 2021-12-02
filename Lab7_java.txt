@@ -1,0 +1,46 @@
+package com.italkutalk.lab7;
+
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.List;
+import kotlin.Metadata;
+import kotlin.jvm.internal.Intrinsics;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+public final class MyAdapter extends ArrayAdapter {
+   private final int layout;
+
+   @Override
+   public View getView(int position,View convertView,ViewGroup parent) {
+      Intrinsics.checkParameterIsNotNull(parent, "parent");
+      View view = View.inflate(parent.getContext(), this.layout, (ViewGroup)null);
+      Item var10000 = (Item)this.getItem(position);
+      if (var10000 != null) {
+         Intrinsics.checkExpressionValueIsNotNull(var10000, "getItem(position) ?: return view");
+         Item item = var10000;
+         ImageView img_photo = (ImageView)view.findViewById(1000099);
+         img_photo.setImageResource(item.getPhoto());
+         TextView tv_msg = (TextView)view.findViewById(1000112);
+         Intrinsics.checkExpressionValueIsNotNull(tv_msg, "tv_msg");
+         tv_msg.setText(this.layout == 1300001 ? (CharSequence)item.getName() : (CharSequence)(item.getName() + ": " + item.getPrice() + '元'));
+         Intrinsics.checkExpressionValueIsNotNull(view, "view");
+         return view;
+      } else {
+         Intrinsics.checkExpressionValueIsNotNull(view, "view");
+         return view;
+      }
+   }
+
+   public MyAdapter(Context context, ArrayList data, int layout) {
+      Intrinsics.checkParameterIsNotNull(context, "context");
+      Intrinsics.checkParameterIsNotNull(data, "data");
+      super(context, layout, (List)data);
+      this.layout = layout;
+   }
+}
